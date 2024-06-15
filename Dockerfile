@@ -1,3 +1,5 @@
+LABEL org.opencontainers.image.source https://github.com/trimbleava/dockers
+
 FROM ubuntu:latest
 LABEL authors="AvaTrimble"
 

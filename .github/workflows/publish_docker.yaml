@@ -14,7 +14,7 @@ on:
 env:
   REGISTRY: ghcr.io
   REPO_NAME: ${{ github.repository }}
-  IMAGE_NAME: py10gdal3.8.5:latest
+  IMAGE_NAME: py10-gdal3.8.5:latest
 
 # There is a single job in this workflow. It's configured to run on the latest available version of Ubuntu.
 jobs:
@@ -47,7 +47,9 @@ jobs:
         id: meta
         uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
         with:
-          images: ${{ env.REGISTRY }}/${{ env.REPO_NAME }}/${{ env.IMAGE_NAME }}
+          images: ${{ env.REGISTRY }}/${{ env.REPO_NAME }}
+          tags:
+            ${{ env.IMAGE_NAME }}
       # This step uses the `docker/build-push-action` action to build the image,
       # based on your repository's `Dockerfile`. If the build succeeds, it pushes
       # the image to GitHub Packages.
@@ -74,7 +76,7 @@ jobs:
       - name: Generate artifact attestation
         uses: actions/attest-build-provenance@v1
         with:
-          subject-name: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME}}
+          subject-name: ${{ env.REGISTRY }}/${{ env.REPO_NAME}}
           subject-digest: ${{ steps.push.outputs.digest }}
           push-to-registry: true
 

@@ -1,4 +1,4 @@
-#### Python GDAL PROJ Docker Image
+#### Python10.xx GDAL3.8.5 PROJ9.xx Docker Image
 
 ```bash
 $ export CR_PAT=YOUR_PAT
